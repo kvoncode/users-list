@@ -113,7 +113,7 @@ const AddForms = ({ users, setUsers }) => {
     form.setFieldsValue({
       username: "Jackie Chan",
       age: "67",
-      adress: "idk",
+      address: "idk",
       tags: "knows kungfu",
     });
   };
@@ -123,13 +123,22 @@ const AddForms = ({ users, setUsers }) => {
     //   "field values",
     //   form.getFieldValue("username"),
     //   form.getFieldValue("age"),
-    //   form.getFieldValue("adress"),
+    //   form.getFieldValue("address"),
     //   form.getFieldValue("tags")
     // );
+    const newId = users.length + 1;
+    const { username, age, address, tags } = form.getFieldsValue(true);
 
-    const { username, age, adress, tags } = form.getFieldsValue(true);
+    const newRecord = {
+      key: newId,
+      name: username,
+      age: age,
+      address: address,
+      tags: [tags],
+    };
 
-    console.log("fields", username, age, adress, tags);
+    setUsers([...users, newRecord]);
+    console.log("fields", username, age, address, tags);
 
     // console.log("add fields", form.getFieldsValue(true));
   };
@@ -172,9 +181,9 @@ const AddForms = ({ users, setUsers }) => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Adress"
-            name="adress"
-            rules={[{ required: true, message: "Please input your adress" }]}
+            label="address"
+            name="address"
+            rules={[{ required: true, message: "Please input your address" }]}
           >
             <Input />
           </Form.Item>
