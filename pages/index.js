@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Button } from "antd";
+import { Table, Tag, Space, Button, Form, Input } from "antd";
 import React, { useEffect, useState } from "react";
 
 const data = [
@@ -25,9 +25,7 @@ const data = [
   },
 ];
 
-let onAdd = () => {
-  console.log("Add function not initialized yet!");
-};
+
 
 const columns = [
   {
@@ -79,21 +77,7 @@ const columns = [
 ];
 
 const UsersList = ({ users, setUsers }) => {
-  onAdd = () => {
-    console.log("add handler initialized");
-    console.log(users.length);
-
-    const newObj = {
-      key: users.length + 1,
-      name: "Oleg",
-      age: 45,
-      address: "Sidney No. 1 Lake Park",
-      tags: ["cool", "teacher"],
-    };
-
-    setUsers(users.concat([newObj]));
-    console.log(users);
-  };
+ 
 
   return (
     <div>
@@ -105,7 +89,8 @@ const UsersList = ({ users, setUsers }) => {
 // const myTable = (columns, data) => {return ()};
 
 const AddForms = ({ users, setUsers }) => {
-  console.log(users);
+  console.log("users:", users);
+
   const addExample = () => {
     const newId = users.length + 1;
     console.log("id", newId);
@@ -124,11 +109,62 @@ const AddForms = ({ users, setUsers }) => {
     console.log("finished");
   };
 
+  const addRecord = () => {
+    console.log("added record");
+
+  }
+
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <div className="addForms">
-      <div>Forms</div>
+      <div className="formContainer">
+        {" "}
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{ offset: 8, span: 16 }}
+          >
+          </Form.Item>
+
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            
+          </Form.Item>
+        </Form>
+      </div>
       <div className="addButtons">
-        <Button type="primary" onClick={() => {}}>
+        <Button type="primary" onClick={addRecord}>
           Add
         </Button>
         <Button type="primary" onClick={addExample}>

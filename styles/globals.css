@@ -39,3 +39,8 @@ a {
   align-content: center;
   gap: 10px;
 }
+
+.formContainer {
+  display: flex;
+  margin: auto;
+}
