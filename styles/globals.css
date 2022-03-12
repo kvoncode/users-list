@@ -17,16 +17,18 @@ a {
 
 .outerDiv {
   display: flex;
+  flex-direction: row;
   width: 100%;
 }
 
 .list {
-  margin: auto;
-
+  margin-left: 550px;
   width: 700px;
 }
 
 .addForms {
   margin-left: 0;
   width: 400px;
+  display: flex;
+  flex-direction: column;
 }
