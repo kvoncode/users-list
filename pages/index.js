@@ -102,7 +102,7 @@ export default function Home() {
   const [users, setUsers] = useState(data);
 
   return (
-    <div>
+    <div className="outerDiv">
       <Table columns={columns} dataSource={users} />
     </div>
   )
