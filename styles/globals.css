@@ -16,7 +16,17 @@ a {
 }
 
 .outerDiv {
+  display: flex;
+  width: 100%;
+}
+
+.list {
   margin: auto;
-  width: 650px;
-  
+
+  width: 700px;
+}
+
+.addForms {
+  margin-left: 0;
+  width: 400px;
 }

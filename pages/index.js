@@ -73,7 +73,6 @@ const columns = [
       <Space size="middle">
         <a>Invite {record.name}</a>
         <a>Delete</a>
-        
       </Space>
     ),
   },
@@ -98,9 +97,6 @@ const UsersList = ({ users, setUsers }) => {
 
   return (
     <div>
-      <Button type="primary" onClick={onAdd}>
-        Add
-      </Button>
       <Table columns={columns} dataSource={users} />;
     </div>
   );
@@ -108,12 +104,25 @@ const UsersList = ({ users, setUsers }) => {
 
 // const myTable = (columns, data) => {return ()};
 
+const AddForms = () => {
+  return (
+    <Button type="primary" onClick={onAdd}>
+      Add
+    </Button>
+  );
+};
+
 export default function Home() {
   const [users, setUsers] = useState(data);
 
   return (
     <div className="outerDiv">
-      <UsersList users={users} setUsers={setUsers}></UsersList>
+      <div className="list">
+        <UsersList users={users} setUsers={setUsers}></UsersList>
+      </div>
+      <div className="addForms">
+        <AddForms></AddForms>
+      </div>
     </div>
   );
 }
