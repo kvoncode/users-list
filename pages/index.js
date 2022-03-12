@@ -104,7 +104,26 @@ const UsersList = ({ users, setUsers }) => {
 
 // const myTable = (columns, data) => {return ()};
 
-const AddForms = () => {
+const AddForms = ({ users, setUsers }) => {
+  console.log(users);
+  const addExample = () => {
+    const newId = users.length + 1;
+    console.log("id", newId);
+    const newRecord = {
+      key: newId,
+      name: "Oleg",
+      age: 45,
+      address: "Sidney No. 1 Lake Park",
+      tags: ["cool", "teacher"],
+    };
+
+    console.log("crazy stuff", [users, newRecord]);
+
+    setUsers([...users, newRecord]);
+
+    console.log("finished");
+  };
+
   return (
     <div className="addForms">
       <div>Forms</div>
@@ -112,7 +131,7 @@ const AddForms = () => {
         <Button type="primary" onClick={() => {}}>
           Add
         </Button>
-        <Button type="primary" onClick={() => {}}>
+        <Button type="primary" onClick={addExample}>
           Add Example
         </Button>
       </div>
@@ -129,7 +148,7 @@ export default function Home() {
         <UsersList users={users} setUsers={setUsers}></UsersList>
       </div>
 
-      <AddForms></AddForms>
+      <AddForms users={users} setUsers={setUsers}></AddForms>
     </div>
   );
 }
