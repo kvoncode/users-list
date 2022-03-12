@@ -25,8 +25,6 @@ const data = [
   },
 ];
 
-
-
 const columns = [
   {
     title: "Name",
@@ -77,8 +75,6 @@ const columns = [
 ];
 
 const UsersList = ({ users, setUsers }) => {
- 
-
   return (
     <div>
       <Table columns={columns} dataSource={users} />;
@@ -89,6 +85,10 @@ const UsersList = ({ users, setUsers }) => {
 // const myTable = (columns, data) => {return ()};
 
 const AddForms = ({ users, setUsers }) => {
+  const [form] = Form.useForm();
+
+  useEffect(() => {});
+
   console.log("users:", users);
 
   const addExample = () => {
@@ -109,10 +109,30 @@ const AddForms = ({ users, setUsers }) => {
     console.log("finished");
   };
 
-  const addRecord = () => {
-    console.log("added record");
+  const onFill = () => {
+    form.setFieldsValue({
+      username: "Jackie Chan",
+      age: "67",
+      adress: "idk",
+      tags: "knows kungfu",
+    });
+  };
 
-  }
+  const addRecord = () => {
+    // console.log(
+    //   "field values",
+    //   form.getFieldValue("username"),
+    //   form.getFieldValue("age"),
+    //   form.getFieldValue("adress"),
+    //   form.getFieldValue("tags")
+    // );
+
+    const { username, age, adress, tags } = form.getFieldsValue(true);
+
+    console.log("fields", username, age, adress, tags);
+
+    // console.log("add fields", form.getFieldsValue(true));
+  };
 
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -127,6 +147,7 @@ const AddForms = ({ users, setUsers }) => {
       <div className="formContainer">
         {" "}
         <Form
+          form={form}
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -136,30 +157,33 @@ const AddForms = ({ users, setUsers }) => {
           autoComplete="off"
         >
           <Form.Item
-            label="Username"
+            label="Name"
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[{ required: true, message: "Please input your username" }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            label="Age"
+            name="age"
+            rules={[{ required: true, message: "Please input your age" }]}
           >
-            <Input.Password />
+            <Input />
           </Form.Item>
-
           <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{ offset: 8, span: 16 }}
+            label="Adress"
+            name="adress"
+            rules={[{ required: true, message: "Please input your adress" }]}
           >
+            <Input />
           </Form.Item>
-
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            
+          <Form.Item
+            label="Tags"
+            name="tags"
+            rules={[{ required: true, message: "Please input your tags" }]}
+          >
+            <Input />
           </Form.Item>
         </Form>
       </div>
@@ -169,6 +193,9 @@ const AddForms = ({ users, setUsers }) => {
         </Button>
         <Button type="primary" onClick={addExample}>
           Add Example
+        </Button>
+        <Button type="primary" onClick={onFill}>
+          Fill Fields
         </Button>
       </div>
     </div>
