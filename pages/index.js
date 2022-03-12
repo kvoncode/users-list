@@ -106,9 +106,17 @@ const UsersList = ({ users, setUsers }) => {
 
 const AddForms = () => {
   return (
-    <Button type="primary" onClick={onAdd}>
-      Add
-    </Button>
+    <div className="addForms">
+      <div>Forms</div>
+      <div className="addButtons">
+        <Button type="primary" onClick={() => {}}>
+          Add
+        </Button>
+        <Button type="primary" onClick={() => {}}>
+          Add Example
+        </Button>
+      </div>
+    </div>
   );
 };
 
@@ -120,9 +128,8 @@ export default function Home() {
       <div className="list">
         <UsersList users={users} setUsers={setUsers}></UsersList>
       </div>
-      <div className="addForms">
-        <AddForms></AddForms>
-      </div>
+
+      <AddForms></AddForms>
     </div>
   );
 }

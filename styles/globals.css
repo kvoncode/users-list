@@ -32,3 +32,10 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+.addButtons {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  gap: 10px;
+}
